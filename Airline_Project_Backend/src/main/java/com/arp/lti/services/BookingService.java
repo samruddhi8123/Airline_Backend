@@ -10,11 +10,12 @@ import com.arp.lti.beans.sFlight;
 
 public interface BookingService {
 
-//	public List<Flight> searchFlight(String source, String destination,Date departureDate,String travelClass);
+	//public List<Flight> searchFlight(String source, String destination,Date departureDate,String travelClass);
 	public List<Flight> searchFlight(sFlight sf);
-	public Booking addBooking(Booking b);
 	public List<Booking> viewBooking(int userId);
 	//public long addBookings(Booking b,String travelClass, int flightId, int userId);
-	public String deleteBooking(int bookingId);
+	//public String deleteBooking(int bookingId);
+	public Booking addBooking(Booking b);
+
 
 }

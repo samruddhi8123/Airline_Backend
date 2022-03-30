@@ -34,6 +34,13 @@ public class BookingDaoImpl implements BookingDao {
 	private EntityManager em;
 
 	
+	/*@Override
+	public String deleteBooking(int bookingId) {
+		// TODO Auto-generated method stub
+		return null;
+	}*/
+
+	
 //	
 //	@Override
 //	public String cancelBooking(int bookingId) {		
@@ -55,7 +62,7 @@ public class BookingDaoImpl implements BookingDao {
 		System.out.println(travelClass);
 		int tc = travelClass.length();
 		System.out.println(tc);
-		// String travelClass = "economy";
+		 //String travelClass = "economy";
 
 		String pattern = "yyyy-MM-dd";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
@@ -76,7 +83,7 @@ public class BookingDaoImpl implements BookingDao {
 		tq.setParameter("source", source);
 		tq.setParameter("destination", destination);
 		tq.setParameter("departureDate", departureDate1);
-//		tq.setParameter("travelClass", travelClass);
+        //tq.setParameter("travelClass", travelClass);
 		List<Flight> myFlights = tq.getResultList();
 
 		if (tc == 7) {
@@ -165,7 +172,7 @@ public class BookingDaoImpl implements BookingDao {
 	}
 
 	
-	@Transactional
+	/*@Transactional
 	@Override
 	public String deleteBooking(int bookingId) {
 		
@@ -225,7 +232,7 @@ public class BookingDaoImpl implements BookingDao {
 		
 		
 	}
-
+*/
 
 
 }

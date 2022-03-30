@@ -57,7 +57,7 @@ public class UserDaoImpl implements UserDao {
 			return user;
 		}
 	}
-/*
+
 	@Override
 	@Transactional
 	public User updatePassword(String email, String password) throws UserNotFoundException {
@@ -76,7 +76,7 @@ public class UserDaoImpl implements UserDao {
 			throw new UserNotFoundException("Not such user exists");
 		}
 	}
-*/
+
 
 	@Override
 	public User loginUser(String email, String password) throws UserNotFoundException {
@@ -98,7 +98,7 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 
-	/*
+	
 	@Override
 	public User getUserById(int id) throws UserNotFoundException {
 		// TODO Auto-generated method stub
@@ -116,6 +116,6 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 
-*/
+
 	
 }

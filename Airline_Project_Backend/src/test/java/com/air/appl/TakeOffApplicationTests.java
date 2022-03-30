@@ -1,6 +1,5 @@
 package com.air.appl;
 
-//using mockito
 
 //import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
@@ -31,7 +30,7 @@ class TakeOffApplicationTests {
 	@Autowired
 	private UserService userService;
 	
-	@MockBean
+	@Autowired
 	private UserDao userDao;
 
 	@Test
@@ -43,7 +42,7 @@ class TakeOffApplicationTests {
 	{
 		String str="2020-01-01";  
 	    Date date=Date.valueOf(str);
-		when(userDao.getAllUsers()).thenReturn(Stream.of(new User(21080054,"eurus@gmail.com","eurus","Ms","Eurus","Scott",1234567890L,date), new User(21080055,"pam@gmail.com","pam","Ms","Pam","Fischer",1023456789L,date), new User(21080056,"stella@gmail.com","stella","Ms","Stella","Bernard",9012345678L,date), new User(21080054,"cynthia@gmail.com","cynthia","Ms","Cynthia","Hunter",1134567890L,date)).collect(Collectors.toList()));
+		//when(userDao.getAllUsers()).thenReturn(Stream.of(new User(21080054,"eurus@gmail.com","eurus","Ms","Eurus",1234567890L,date), new User(21080055,"pam@gmail.com","pam","Ms","Pam","Fischer",1023456789L,date), new User(21080056,"stella@gmail.com","stella","Ms","Stella","Bernard",9012345678L,date), new User(21080054,"cynthia@gmail.com","cynthia","Ms","Cynthia","Hunter",1134567890L,date)).collect(Collectors.toList()));
 		Assertions.assertEquals(4, userService.getAllUsers().size());
 	}
 	
@@ -52,7 +51,7 @@ class TakeOffApplicationTests {
 	 { 
 		 String str="2020-01-01";
 		  Date date=Date.valueOf(str); // 
-		  User user= new User(21080054,"will@gmail.com","will","Mr","Will","Wilson",1234568890L,date);
+		  User user= new User(21080054,"will@gmail.com","will","Mr","Will",1234568890L,date);
 		   when(userDao.registerUser(user)).thenReturn(user); //
 		  Assertions.assertEquals(user, userService.registerUser(user));
 	 }
@@ -63,7 +62,7 @@ class TakeOffApplicationTests {
 		try
 		{	String str="2020-01-01";  
 		    Date date=Date.valueOf(str);
-			User user= new User(21080055,"will@gmail.com","will","Mr","Will","Wilson",1234568890L,date);
+			User user= new User(21080055,"will@gmail.com","will","Mr","Will",1234568890L,date);
 			when(userDao.registerUser(user)).thenReturn(null);
 			if(userService.registerUser(user)==null)
 			{
@@ -83,7 +82,7 @@ class TakeOffApplicationTests {
 		String password="eurus";
 		String str="2020-01-01";  
 	    Date date=Date.valueOf(str);
-	    User user=new User(21080054,"eurus@gmail.com","eurus","Ms","Eurus","Scott",1234567890L,date);
+	    User user=new User(21080054,"eurus@gmail.com","eurus","Ms","Eurus",1234567890L,date);
 		when(userDao.loginUser(email, password)).thenReturn(user);
 		Assertions.assertEquals(user, userService.loginUser(email, password));
 	}
@@ -97,7 +96,7 @@ class TakeOffApplicationTests {
 			String password="will";
 			String str="2020-01-01";  
 		    Date date=Date.valueOf(str);
-			User user= new User(21080055,"will@gmail.com","will","Mr","Will","Wilson",1234568890L,date);
+			User user= new User(21080055,"will@gmail.com","will","Mr","Will",1234568890L,date);
 			when(userDao.loginUser(email,password)).thenReturn(null);
 			if(userService.loginUser(email,password)==null)
 			{
@@ -117,23 +116,23 @@ class TakeOffApplicationTests {
 		String password="eurus";
 		String str="2020-01-01";  
 	    Date date=Date.valueOf(str);
-	    User user=new User(21080054,"eurus@gmail.com","eurus","Ms","Eurus","Scott",1234567890L,date);
+	    User user=new User(21080054,"eurus@gmail.com","eurus","Ms","Eurus",1234567890L,date);
 		when(userDao.loginUser(email, password)).thenReturn(user);
 		Assertions.assertEquals(user, userService.loginUser(email, password));
 	}
 
-	/*
+	
 	public void updatePasswordTest()
 	{
 		String email="eurus@gmail.com";
 		String password="eurus1";
 		String str="2020-01-01";  
 	    Date date=Date.valueOf(str);
-	    User user=new User(21080054,"eurus@gmail.com","eurus1","Ms","Eurus","Scott",1234567890L,date);
-		when(userDao.updatePassword(email, password)).thenReturn(user);
-		Assertions.assertEquals(user, userService.updatePassword(email, password));
+	    User user=new User(21080054,"eurus@gmail.com","eurus1","Ms","Eurus",1234567890L,date);
+		//when(userDao.updatePassword(email, password)).thenReturn(user);
+		//Assertions.assertEquals(user, userService.updatePassword(email, password));
 	}
-*/	
+	
 	@Test()
 	public void updatePassword_UserNotFound_Test()
 	{
@@ -143,7 +142,7 @@ class TakeOffApplicationTests {
 			String password="wills";
 			String str="2020-01-01";  
 		    Date date=Date.valueOf(str);
-			User user= new User(21080055,"will@gmail.com","will","Mr","Will","Wilson",1234568890L,date);
+			User user= new User(21080055,"will@gmail.com","will","Mr","Will",1234568890L,date);
 			when(userDao.loginUser(email,password)).thenReturn(null);
 			if(userService.loginUser(email,password)==null)
 			{

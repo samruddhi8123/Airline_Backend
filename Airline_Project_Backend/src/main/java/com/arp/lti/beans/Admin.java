@@ -19,10 +19,7 @@ public class Admin {
 	@Column (name = "PASSWORD")
 	private String password;
 	
-
-	
-
-	public Admin() {
+   public Admin() {
 		super();
 	}
 

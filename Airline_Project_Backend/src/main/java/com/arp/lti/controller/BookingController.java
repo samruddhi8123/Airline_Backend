@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.arp.lti.beans.Admin;
 import com.arp.lti.beans.Booking;
 import com.arp.lti.beans.Flight;
 import com.arp.lti.beans.User;
-import com.arp.lti.beans.sFlight;
+//import com.arp.lti.beans.sFlight;
 import com.arp.lti.services.BookingService;
+import com.arp.lti.services.BookingServiceImpl;
 import com.arp.lti.services.UserServiceImpl;
 
 @CrossOrigin(origins="*")
@@ -29,8 +31,10 @@ import com.arp.lti.services.UserServiceImpl;
 public class BookingController {
 	
 	
+	//private Object service;
+
 	@Autowired
-	private BookingService service;
+	private BookingServiceImpl service;
 
 	@PostMapping("/addBooking")
 	public Booking addBooking(@RequestBody Booking b)
@@ -38,11 +42,11 @@ public class BookingController {
 		return service.addBooking(b);
 	}
 	
-	@PostMapping("/sFlight" )
-	public List<Flight> getFlightList(@RequestBody sFlight sf)
+	/*@PostMapping("/sFlight" )
+	public List<Flight> getFlightList(@RequestBody Flight sf)
 	{
 		return service.searchFlight(sf);
-	}
+	}*/
 	
 	@GetMapping("/bookings/{userId}")
 	public List<Booking> getBookingList(@PathVariable(value="userId") int userId)
@@ -50,10 +54,10 @@ public class BookingController {
 		return service.viewBooking(userId);
 	}
 
-	@DeleteMapping("/bookingdelete/{id}")
+	/*@DeleteMapping("/bookingdelete/{id}")
 	public String deleteBooking(@PathVariable(value="id") int bookingId) 
 	{
 		return service.deleteBooking(bookingId);
 	}
-	
+	*/
 }

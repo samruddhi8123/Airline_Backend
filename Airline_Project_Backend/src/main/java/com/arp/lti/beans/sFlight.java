@@ -11,6 +11,7 @@ public class sFlight {
 	public sFlight() {
 		super();
 	}
+	
 	public sFlight(String source, String destination, String departureDate, String travelClass) {
 		super();
 		this.source = source;

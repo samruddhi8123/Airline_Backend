@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
-	/*
+	
 	@Override
 	@Transactional
 	public User updatePassword(String email, String password) throws UserNotFoundException {
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 		System.out.println(user);
 		return user;
 	}
-   */
+   
 	
 	@Override
 	public User loginUser(String email, String password) throws UserNotFoundException {
@@ -48,12 +48,13 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
-	/*
+	
+	
 	@Override
 	public User getUserById(int id) throws UserNotFoundException {
 		return dao.getUserById(id);
 	}
-	*/
+	
 	
 
 }

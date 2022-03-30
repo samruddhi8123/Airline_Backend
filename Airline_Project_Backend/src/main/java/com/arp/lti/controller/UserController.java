@@ -3,6 +3,7 @@
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ import com.arp.lti.exception.UserAlreadyExistsException;
 import com.arp.lti.exception.UserNotFoundException;
 import com.arp.lti.services.UserServiceImpl;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1")
 @ControllerAdvice
@@ -27,7 +28,7 @@ public class UserController {
 	@Autowired
 	private UserServiceImpl service;
    
-	// http://localhost:8090/api/v1/users
+	// http://localhost:8181/api/v1/users
 	@GetMapping("/users")
 	public List<User> getUserList() {
 		return service.getAllUsers();
@@ -35,26 +36,27 @@ public class UserController {
 
 	// http://localhost:8181/api/v1/addnewuser
 	@PostMapping("/addnewuser")
-	public String registerUser(@RequestBody User user) throws UserAlreadyExistsException{
+	public ResponseEntity<User> registerUser(@RequestBody User user) throws UserAlreadyExistsException{
 		User u=service.registerUser(user);
-		System.out.println("controller"+u);
-		return "User registered successfully";
+		System.out.println("controller - "+user);
+		return ResponseEntity.ok(u);
 	}
 
-	// http://localhost:8090/api/v1/users/{email}/{password}
+	// http://localhost:8181/api/v1/users/{email}/{password}
 
 	@GetMapping(path = "/users/{email}/{password}", produces = "application/json")
 	public User loginUser(@PathVariable(value = "email") String email, @PathVariable(value = "password") String password) throws UserNotFoundException{
+		System.out.println("Email : "+email+"  Password : "+password);
 		return service.loginUser(email, password);
 	}
-/*
-	// http://localhost:8090/api/v1/users/{id}
+	
+	// http://localhost:8181/api/v1/users/{id}
 	@GetMapping(path = "/users/{id}", produces = "application/json")
 	public User getUserById(@PathVariable(value = "id") int userid)  throws UserNotFoundException{
 		return service.getUserById(userid);
 	}
 
-	// http://localhost:8090/api/v1/updateuser
+	// http://localhost:8181/api/v1/updateuser
 	@PutMapping(path = "/updateuser")
 	public String updatePassword(@RequestBody User user) throws UserNotFoundException{
 		String email = user.getEmail();
@@ -63,5 +65,5 @@ public class UserController {
 		return "Password updated successfully";
 	}
 	
-	*/
+	
 }
